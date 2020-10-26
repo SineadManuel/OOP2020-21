@@ -46,7 +46,7 @@ class CardGame():
 
         # add elements into the frames
         self.open_card = Button(cards_frame)
-        the_card = PhotoImage(file='cards/queen_hearts.gif')
+        the_card = PhotoImage(file='cards/'+ self.the_cards.get() +'.gif')  # possibily add random card here
         self.open_card.config(image=the_card)
         self.open_card.grid(row=0, column=0, padx=2, pady=2)
         self.open_card.photo = the_card
@@ -57,9 +57,9 @@ class CardGame():
         closed_deck.grid(row=0, column=1, padx=2, pady=2)
         closed_deck.photo = closed_card
 
-        done_button = Button(button_frame, text="I'm done!")
+        done_button = Button(button_frame, text="I'm done!") #command=self.done_playing
         done_button.grid(row=0, column=0, pady=12)
-        new_game_button = Button(button_frame, text="New Game")
+        new_game_button = Button(button_frame, text="New Game") #command=self.reset_game
         new_game_button.grid(row=1, column=0, pady=13)
         exit_button = Button(button_frame, text="Exit", command=self.game_exit)
         exit_button.grid(row=2, column=0, pady=13)
@@ -81,13 +81,39 @@ class CardGame():
         cards = Queue(maxsize=52) #change this if you want to use a different data structure
         suits = ("hearts", "diamonds", "spades", "clubs")
         people = ("queen", "jack", "king")
-        card_list = []
+        numbers = ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
+        card_deck = []
 
         # your code goes here:
+        for suit in suits:
+            for number in numbers:
+                card_deck.append(number + "_" + suit)
+            for person in people:
+                card_deck.append(person + "_" + suit)
 
-        shuffle(card_list)
+        shuffle(card_deck)
 
-        # your code goes here:
+        # Populates queue with elements from card_deck
+        for i in range(0, 52):
+            cards.put(card_deck[i])
+
+        # TESTS:
+        # Prints list
+        #print(card_deck)
+
+        # Prints length of list
+        #print(len(card_deck))
+
+        # print(cards.get())
+
+        # Prints size of queue
+        #print(cards.qsize())
+
+        # Checks if queue is full or not
+        # if cards.full():
+        #     print("\nIs the queue full: ", cards.full())
+        # else:
+        #     print("\nIs the queue empty: ", cards.empty())
 
         return cards
 

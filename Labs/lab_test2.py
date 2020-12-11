@@ -42,6 +42,8 @@ class Document:
         except IndexError as ie:
             print("Error: ", ie)
 
+        del self.characters[self.cursor]
+
     def save(self):
         """
         Method saves all characters in the characters list
@@ -80,10 +82,11 @@ class Document:
 
         Returns: none
         """
-        try:
-            self.cursor -= steps
-        except IndexError as ie:
-            print("Error: ", ie)
+        self.cursor -= steps
+
+        # prevents cursor from having a negative number
+        if self.cursor < 0:
+            self.cursor = 0
 
 
 # initialising an object and using the class

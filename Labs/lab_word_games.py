@@ -78,10 +78,12 @@ class WordGames:
         """
         print("User input was: "+self.the_words)
 
-class WordDuplication(WordGames): # you implement this and provide docstrings
+
+class WordDuplication(WordGames):  # you implement this and provide docstrings
     pass
 
-class WordScramble(WordGames): # you implement this and provide docstrings
+
+class WordScramble(WordGames):  # you implement this and provide docstrings
     pass
 
 

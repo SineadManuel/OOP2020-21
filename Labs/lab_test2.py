@@ -37,7 +37,10 @@ class Document:
         Arguments: none
         Returns: none
         """
-        del self.characters[self.cursor]
+        try:
+            del self.characters[self.cursor]
+        except IndexError as ie:
+            print("Error: ", ie)
 
     def save(self):
         """
@@ -77,7 +80,10 @@ class Document:
 
         Returns: none
         """
-        self.cursor -= steps
+        try:
+            self.cursor -= steps
+        except IndexError as ie:
+            print("Error: ", ie)
 
 
 # initialising an object and using the class
@@ -87,7 +93,7 @@ characters = 'fake mews'
 for letter in characters:
     doc.insert(letter)
 
-doc.backward(4)
+doc.backward(44)
 doc.delete()
 doc.insert('n')
 doc.save()
